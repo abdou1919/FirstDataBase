@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="FirstDataBase.MainPage">
+
+    <ContentPage.Content>
+
+
+
+        <StackLayout HorizontalOptions="Center" VerticalOptions="Center" >
+
+            <Button Text="List notes" 
+                    x:Name="PushB"/>
+            <Button Text="Add code" 
+                    x:Name="PushAdd"/>
+
+
+            <ImageButton
+                Aspect="AspectFit"
+                BackgroundColor="Transparent"
+                Clicked="OpenScanner"
+                FlexLayout.AlignSelf="Center"
+                FlexLayout.Grow="1"
+                HorizontalOptions="CenterAndExpand"
+                Source="Scanner.png"
+                VerticalOptions="CenterAndExpand"></ImageButton>
+
+            <Label x:Name="ReCodeBare" 
+                   HorizontalOptions="CenterAndExpand" 
+                   FontSize="Title" 
+                   TextColor="Red"/>
+
+            <Button x:Name="TestV" Text="Test" IsVisible="false"/>
+
+           <Button Text="AlertCode" 
+                    Clicked="AlertCode"/>
+
+            
+
+
+
+        </StackLayout>
+
+
+
+    </ContentPage.Content>
+
+</ContentPage>
