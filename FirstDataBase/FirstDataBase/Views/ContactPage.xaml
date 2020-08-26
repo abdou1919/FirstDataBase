@@ -4,26 +4,62 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="FirstDataBase.Views.ContactPage">
+             x:Class="FirstDataBase.Views.ContactPage"
+             >
+            
     <ContentPage.Content>
         <StackLayout>
-           
-            
-            
-            <ListView x:Name="listView"
+
+            <ListView ItemsSource="{Binding Contact}" HasUnevenRows="True" x:Name="listView"  Margin="10"
+                                                                    ItemSelected="OnListViewItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Vertical" Spacing="4" Padding="5" >
+                               
+                                <Label Text="{Binding Text}" Margin="10,0,0,0" TextColor="Red"/>
+                                <Label Text="{Binding Magazzino}" Margin="10,0,0,0" TextColor="Green"/>
+                                <Label Text="{Binding Date}" Margin="10,0,0,0" TextColor="Gray" />
+                                
+                            
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <!--<ListView x:Name="listView">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.View>
+                            <StackLayout>
+                                    <Label Text="{Binding Text}" TextColor="Black" />
+                                    --><!--<Label Text="{Binding Date}" TextColor="Black" />-->
+                                    <!--<Label Text="{Binding Magazzino}"  />--><!--
+                                   
+                                </StackLayout>
+                        </ViewCell.View>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            </ListView>-->
+
+
+
+            <!--<ListView x:Name="listView"
               Margin="10"
-              ItemSelected="OnListViewItemSelected"
-              >
+              ItemSelected="OnListViewItemSelected" >
 
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <TextCell TextColor="Blue"
                           Text="{Binding Text}"
-                          Detail="{Binding Date}"
+                          Detail="{Binding Date}"                          
                            />
                     </DataTemplate>
                 </ListView.ItemTemplate>
-            </ListView>
+            </ListView>-->
             
             
         </StackLayout>

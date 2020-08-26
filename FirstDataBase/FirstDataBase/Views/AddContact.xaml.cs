@@ -25,7 +25,9 @@ namespace FirstDataBase.Views
             {
 
                 Text = TxtNote.Text,
-                Date= DateTime.Now
+                Date= DateTime.Now,
+                Magazzino = EntMag.Text
+               
             };
 
             await App.DataBase.SaveNoteAsync(contact);

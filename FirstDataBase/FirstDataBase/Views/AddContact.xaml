@@ -14,6 +14,7 @@
                         
                         
                         <EntryCell x:Name="TxtNote" Label="Note"></EntryCell>
+                        <EntryCell x:Name="EntMag" Label=" Magazzino"></EntryCell>
 
                         
 

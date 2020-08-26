@@ -33,7 +33,42 @@ namespace FirstDataBase
         {
             InitializeComponent();
 
-            MainPage  = new NavigationPage(new FirstDataBase.MainPage());
+
+
+
+            //MainPage = new NavigationPage( MainPage = new TabbedPage
+            //{
+
+
+            //                            Children =
+            //                            {
+            //                                new MainPage(),
+            //                                new ContactPage()
+
+            //                            }
+            //                        }) ;
+
+
+            //MainPage = new NavigationPage(new FirstDataBase.MainPage());
+
+            MainPage = new NavigationPage(new FirstDataBase.MyTabbedPage());
+
+
+
+
+            //MainPage = new TabbedPage
+            //{
+
+
+            //    Children =
+            //    {
+            //        new MainPage(),
+            //        new ContactPage()
+
+            //    }
+            //};
+
+
         }
 
         protected override void OnStart()

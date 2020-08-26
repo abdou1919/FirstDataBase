@@ -1,36 +1,25 @@
-﻿using FirstDataBase.Models;
-using FirstDataBase.Views;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xamarin.Forms;
-using ZXing.Net.Mobile.Forms;
-
-
-
-
-namespace FirstDataBase
+﻿namespace FirstDataBase
 {
-         
+    using FirstDataBase.Models;
+    using FirstDataBase.Views;
+    using System;
+    using System.ComponentModel;
+    using Xamarin.Forms;
+    using ZXing.Net.Mobile.Forms;
 
     // Learn more about making custom code visible in the Xamarin.Forms previewer
     // by visiting https://aka.ms/xamarinforms-previewer
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
-        
+        internal string ScanResult;
+
+
         public MainPage()
-        {
-            
-
-
+        {  
             InitializeComponent();
-            PushB.Clicked += (sender, e) => { Navigation.PushAsync(new ContactPage()); };
-            PushAdd.Clicked += (sender, e) => { Navigation.PushAsync(new AddContact()); };
-
+            //PushB.Clicked += (sender, e) => { Navigation.PushAsync(new ContactPage()); };
+            //PushAdd.Clicked += (sender, e) => { Navigation.PushAsync(new AddContact()); };
         }
 
         private void OpenScanner(object sender, EventArgs e)
@@ -40,41 +29,77 @@ namespace FirstDataBase
 
         public async void Scanner()
         {
-            
-            
+
+
             //Note contact = new Note();
 
 
 
             var ScannerPage = new ZXingScannerPage();
 
-            ScannerPage.OnScanResult += (result) => {
+            ScannerPage.OnScanResult += (result) =>
+            {
                 // Interrompi la scansione
                 ScannerPage.IsScanning = false;
 
                 // Alert com o código escaneado
-                
-               
-                
-                Device.BeginInvokeOnMainThread(async () => {
+
+
+
+                Device.BeginInvokeOnMainThread(async () =>
+                {
                     await Navigation.PopAsync();
+
+
+                    ScanResult = result.Text;
 
 
 
                     //DisplayAlert("Codice scansionato", result.Text, "OK");
 
 
-                    Note contact = new Note
+                    //Note contact = new Note
 
-                    {
-                       Text = result.Text,
-                       Date = DateTime.Now
-                };
+                    //{
+                    //    Text = result.Text,
+                    //    Date = DateTime.Now,
 
-                    await App.DataBase.SaveNoteAsync(contact);
-                    ReCodeBare.Text = result.Text;
+                    //    Magazzino = MyPicke.SelectedItem.ToString()
+
+                    //};
+
+                    ReCodeBare.Text = ScanResult;
+
+                    //await App.DataBase.SaveNoteAsync(contact);
+                    //MyPicke.IsVisible = true;
+
                     //await DisplayAlert("Codice scansionato", contact.Text, "OK");
                     //await DisplayAlert("Add", "Contact Added", "OK");
+
+
+
+
+
+
+                    //if (contact.Magazzino == null)
+
+
+                    //{
+
+
+                    //    await DisplayAlert("Add", "Contact Added", "OK");
+
+
+                    //}
+
+
+                    //else 
+                    //{
+
+                    //    await App.DataBase.SaveNoteAsync(contact);
+                    //}
+
+
 
 
 
@@ -82,37 +107,38 @@ namespace FirstDataBase
                 });
             };
 
-            
-            
             await Navigation.PushAsync(ScannerPage);
-            
-
         }
 
-        private void AlertCode(object sender, EventArgs e)
+        private async void Button_Clicked(object sender, EventArgs e)
         {
-            
 
-            if (ReCodeBare.Text == null)
+
+            if (ScanResult == null || MyPicke.SelectedIndex == -1)
             {
-               
-                DisplayAlert("Vuoto", "Scanna un articolo", "OK");
 
+                await DisplayAlert("Errore", "Devi scansionare un prodotto e scegliere un magazzino", "OK");
             }
-            else {
 
-                TestV.IsVisible = true;
-                
+            else
+            {
+                string PickerResult = MyPicke.SelectedItem.ToString();
 
+                Note contact = new Note
 
+                {
+                    Text = ScanResult,
+                    Date = DateTime.Now,
+                    Magazzino = PickerResult
 
+                };
 
-                //DisplayAlert("Codice scansionato", ReCodeBare.Text, "OK");
-
-
-
+                await App.DataBase.SaveNoteAsync(contact);
+                await DisplayAlert("", "Elemento aggiunto con successo", "OK");
+                ScanResult = null;
+                ReCodeBare.Text = null;
+                MyPicke.SelectedIndex = -1;
             }
         }
     }
 }
-

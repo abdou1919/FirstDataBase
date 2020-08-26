@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:firstdatabase="clr-namespace:FirstDataBase" xmlns:firstdatabase1="clr-namespace:FirstDataBase.Views"
+            mc:Ignorable="d"
+           xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core" 
+         
+           
+           
+          
+           
+            android:TabbedPage.BarItemColor="#E0E0E0"
+            android:TabbedPage.BarSelectedItemColor="White"
+            android:TabbedPage.ToolbarPlacement="Bottom"
+             
+               BarBackgroundColor="#2196F3"
+           
+            
+               
+   
+           
+            
+
+
+    x:Class="FirstDataBase.MyTabbedPage">
+    
+    
+  <!--Pages can be added as references or inline-->
+    <firstdatabase:MainPage  IconImageSource="home.png"></firstdatabase:MainPage>
+    <firstdatabase1:ContactPage  IconImageSource="list.png"></firstdatabase1:ContactPage>
+    <firstdatabase1:AddContact  IconImageSource="add.png"></firstdatabase1:AddContact>
+
+    
+    
+</TabbedPage>
